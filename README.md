@@ -119,3 +119,100 @@ Lessons Learned
 
   Conduct post-incident review to improve future response and strengthen security controls.
 
+
+# PART 2 – PRACTICAL IMPLEMENTATION
+🖥️ COMPLETE LAB ARCHITECTURE
+Create 4 Virtual Machines
+Machine	OS	Purpose	Tools Installed
+1️⃣ Kali Linux	Attacker	Launch attacks	Metasploit
+2️⃣ Kali_wazuh Server	SOC Server	SIEM + Case Mgmt	Wazuh, TheHive, CrowdSec
+3️⃣ Windows 10	Victim	Target machine	Wazuh Agent, Velociraptor Agent, FTK Imager
+4️⃣ Metasploitable2	Vulnerable Server	Exploitable target	(Pre-installed vulnerable services)
+________________________________________
+🧱 MACHINE 1 – Kali Linux (Attacker)
+Install:
+•	Metasploit (already installed in Kali)
+Verify:
+msfconsole
+ 
+🧱 MACHINE 2 – Kali_wazuh Server (SOC Machine)
+This is Main SOC Server.
+You will install:
+•	Wazuh
+•	TheHive
+•	CrowdSec
+•	Velociraptor (Server mode)
+________________________________________
+✅ Step 1 – Install Wazuh (On Ubuntu Only)
+curl -sO https://packages.wazuh.com/4.7/wazuh-install.sh
+sudo bash wazuh-install.sh -a
+After install:
+Access:
+https://<Ubuntu-IP>
+ 
+________________________________________
+
+
+✅ Step 2 – Install TheHive (On Ubuntu Only)
+Install Java:
+sudo apt install openjdk-11-jdk -y
+Install Cassandra:
+sudo apt install cassandra -y
+Install TheHive:
+wget https://github.com/TheHive-Project/TheHive/releases/download/4.1.24/thehive_4.1.24-1_all.deb
+sudo dpkg -i thehive_4.1.24-1_all.deb
+sudo systemctl start thehive
+Access:
+http://<Ubuntu-IP>:9000
+
+ ________________________________________
+✅ Step 3 – Install CrowdSec (On Ubuntu Only)
+curl -s https://packagecloud.io/install/repositories/crowdsec/crowdsec/script.deb.sh | sudo bash
+sudo apt install crowdsec -y
+Block attacker IP later using:
+sudo cscli decisions add --ip <attacker-ip> --duration 24h
+________________________________________
+
+✅ Step 4 – Install Velociraptor Server (On Ubuntu Only)
+wget https://github.com/Velocidex/velociraptor/releases/latest/download/velociraptor-v0.6.6-linux-amd64
+chmod +x velociraptor-v0.6.6-linux-amd64
+sudo ./velociraptor-v0.6.6-linux-amd64 gui
+Access:
+https://<Ubuntu-IP>:8889
+ ________________________________________
+🧱 MACHINE 3 – Windows 10 (Victim)
+Install:
+•	Wazuh Agent
+•	Velociraptor Agent
+•	FTK Imager
+________________________________________
+✅ Step 1 – Install Wazuh Agent
+Download Windows Agent from:
+https://packages.wazuh.com
+During installation:
+Enter Ubuntu IP as Manager.
+Then on Ubuntu:
+sudo /var/ossec/bin/manage_agents
+Add agent → Copy key → Paste in Windows agent.
+Restart Windows agent service.
+ 
+________________________________________
+✅ Step 2 – Install Velociraptor Agent
+Download Windows binary.
+Run as administrator:
+velociraptor.exe client -c client.config.yaml
+Connect to Ubuntu Velociraptor server.
+ 
+✅ Step 3 – Install FTK Imager
+Download and install.
+To collect memory:
+File → Capture Memory → Save .mem file.
+________________________________________
+🧱 MACHINE 4 – Metasploitable2
+No installation required.
+Just:
+•	Import into VirtualBox
+•	Get IP address using:
+ifconfig
+ ________________________________________
+
