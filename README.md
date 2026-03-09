@@ -326,3 +326,144 @@ Example incident ticket:
 
 <img width="1920" height="922" alt="VirtualBox_kali_wazuh_05_03_2026_12_43_21" src="https://github.com/user-attachments/assets/0dce994d-e899-4a0b-85e2-ca8a87f98e62" />
 
+Below is a **complete incident response report for a “Multiple SSH Login Failed” incident**. You can **copy-paste this into Google Docs** for your assignment.
+
+---
+
+# SOC Incident Response Report
+
+## Incident Type: Multiple SSH Login Failures (Brute Force Attempt)
+
+---
+
+# 1. Executive Summary
+
+On **18 August 2025**, the Security Operations Center detected multiple failed SSH login attempts on a Linux server. The alerts indicated a potential **brute-force attack** targeting SSH authentication. Investigation revealed repeated login failures from a suspicious external IP address attempting to gain unauthorized access. The SOC team analyzed system logs, confirmed the attack pattern, and blocked the malicious IP address to prevent further attempts. No successful login was detected, and no systems were compromised.
+
+---
+
+# 2. Timeline of Events
+
+| Timestamp           | Action                                                |
+| ------------------- | ----------------------------------------------------- |
+| 2025-08-18 14:00:00 | SIEM generated alert for multiple SSH login failures  |
+| 2025-08-18 14:05:00 | SOC analyst reviewed authentication logs              |
+| 2025-08-18 14:10:00 | Suspicious IP address identified                      |
+| 2025-08-18 14:15:00 | IP reputation checked on VirusTotal                   |
+| 2025-08-18 14:20:00 | Firewall rule created to block malicious IP           |
+| 2025-08-18 14:30:00 | Server monitoring continued to confirm attack stopped |
+
+---
+
+# 3. Impact Analysis
+
+**Affected System**
+
+* Linux server hosting internal services
+
+**Attack Type**
+
+* SSH brute force attempt
+
+**Potential Risks**
+
+* Unauthorized server access
+* Credential compromise
+* Data theft or system modification
+
+**Actual Impact**
+
+* No successful login occurred
+* No system compromise detected
+
+---
+
+# 4. Remediation Steps
+
+The SOC team implemented the following actions:
+
+* Blocked the attacker IP address in the firewall
+* Enabled SSH rate limiting
+* Reviewed SSH authentication logs
+* Enforced stronger password policies
+* Implemented account lockout after multiple failed attempts
+* Recommended enabling multi-factor authentication (MFA)
+
+---
+
+# 5. Investigation Log
+
+| Timestamp           | Action                             |
+| ------------------- | ---------------------------------- |
+| 2025-08-18 14:00:00 | Alert received from SIEM           |
+| 2025-08-18 14:05:00 | Reviewed `/var/log/auth.log`       |
+| 2025-08-18 14:10:00 | Identified repeated login failures |
+| 2025-08-18 14:15:00 | Extracted source IP address        |
+| 2025-08-18 14:20:00 | Checked IP reputation              |
+| 2025-08-18 14:25:00 | Blocked malicious IP               |
+| 2025-08-18 14:30:00 | Confirmed attack stopped           |
+
+---
+
+# 6. SSH Brute Force Investigation Checklist
+
+☑ Confirm SSH authentication logs
+
+☑ Identify repeated failed login attempts
+
+☑ Extract attacker IP address
+
+☑ Check IP reputation using threat intelligence
+
+☑ Block malicious IP address
+
+☑ Verify no successful login occurred
+
+☑ Strengthen SSH security policies
+
+---
+
+# 7. Incident Response Flow Diagram
+
+You can create this diagram using **draw.io**.
+
+Flow structure:
+
+```
+SSH Login Failure Alert
+        ↓
+SOC Analyst Investigation
+        ↓
+Review Authentication Logs
+        ↓
+Identify Suspicious IP
+        ↓
+Check IP Reputation
+        ↓
+Block Malicious IP
+        ↓
+Strengthen SSH Security
+        ↓
+Incident Closed
+```
+
+---
+
+# 8. Post-Mortem (50 Words)
+
+The SSH brute force attempt highlighted the importance of proactive monitoring and strong authentication controls. Although no compromise occurred, implementing stricter SSH security policies, such as multi-factor authentication and login attempt limits, will significantly reduce the risk of future attacks and improve the organization’s security posture.
+
+---
+
+# Optional (Good for SOC Portfolio)
+
+You can also include a **sample log** from the Linux server:
+
+```
+Aug 18 14:02:10 server sshd[2156]: Failed password for root from 192.168.1.50 port 51432 ssh2
+Aug 18 14:02:15 server sshd[2157]: Failed password for root from 192.168.1.50 port 51435 ssh2
+Aug 18 14:02:20 server sshd[2158]: Failed password for root from 192.168.1.50 port 51440 ssh2
+```
+
+---
+
