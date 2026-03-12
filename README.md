@@ -449,7 +449,7 @@ Incident Closed
 
 ---
 
-# 8. Post-Mortem (50 Words)
+# 8. Post-Mortem 
 
 The SSH brute force attempt highlighted the importance of proactive monitoring and strong authentication controls. Although no compromise occurred, implementing stricter SSH security policies, such as multi-factor authentication and login attempt limits, will significantly reduce the risk of future attacks and improve the organization’s security posture.
 
