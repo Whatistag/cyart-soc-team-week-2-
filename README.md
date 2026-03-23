@@ -578,10 +578,6 @@ The alert generated in **Wazuh** indicated multiple SSH login failures. After in
 
 ---
 
-Below is a **complete report-style answer for the “Evidence Preservation Practice” task** using **Velociraptor** and **FTK Imager**.
-
----
-
 # Evidence Preservation Practice Report
 
 ## 1. Objective
