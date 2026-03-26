@@ -532,6 +532,8 @@ The source IP **192.168.1.100** was checked in:
 * AlienVault OTX
 * VirusTotal
 
+<img width="1920" height="960" alt="virustotal_ip_checking" src="https://github.com/user-attachments/assets/ae84286f-261f-4f2b-804e-f1b88aa1d36a" />
+
 ### Result
 
 * No malicious reputation found in threat intelligence feeds.
@@ -584,6 +586,8 @@ The alert generated in **Wazuh** indicated multiple SSH login failures. After in
 
 The objective of this exercise is to practice **digital evidence preservation during a security incident investigation**. This includes collecting volatile data, preserving system memory, generating cryptographic hashes for integrity verification, and documenting the chain of custody to maintain evidence authenticity.
 
+<img width="1920" height="922" alt="velociraptor" src="https://github.com/user-attachments/assets/100e08bd-8509-4e52-8476-f6f509d9a148" />
+
 ---
 
 # 2. Volatile Data Collection
@@ -599,14 +603,18 @@ Volatile data was collected using **Velociraptor** from a Windows virtual machin
 ```
 Hunt Manager → New Hunt
 ```
+<img width="1024" height="768" alt="velociraptor new notebook create" src="https://github.com/user-attachments/assets/2507033a-cd38-438b-aef8-70c2d04d2b46" />
 
 4. Run the query:
 
 ```
 SELECT * FROM netstat()
 ```
+<img width="1024" height="768" alt="velociraptor Add Query Cell Enter Netstat Query" src="https://github.com/user-attachments/assets/6da326f6-286b-4ad9-af7c-723bf11a5693" />
 
 5. This query collects **active network connections** from the system.
+
+<img width="1024" height="768" alt="velociptor after save and run the VQL cell" src="https://github.com/user-attachments/assets/863ce1b0-6209-464a-b508-e9d5428ac62f" />
 
 ### Example Output
 
@@ -668,6 +676,7 @@ Example command:
 ```
 sha256sum memory_dump.raw
 ```
+<img width="1024" height="768" alt="query_1_csv_hash_calculation" src="https://github.com/user-attachments/assets/c828012a-b7da-45e4-8dc9-8b8d939a855d" />
 
 Example output:
 
